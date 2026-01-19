@@ -1,0 +1,1527 @@
+{
+  "query": "Citibank",
+  "search_type": "name",
+  "country_filter": null,
+  "results_count": 73,
+  "results": [
+    {
+      "legal_entity_id": "5493003FVWLMBFTISI11",
+      "legal_entity_name": {
+        "name": "CITIBANK MAGHREB",
+        "language": "fr"
+      },
+      "region": "MA-CAS",
+      "country": "MA",
+      "country_of_jurisdiction": "MA",
+      "address": {
+        "city": "Casablanca",
+        "postal_code": "20190",
+        "country": "MA"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIMAMCXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "5493004OQLIOSZL7YK83",
+      "legal_entity_name": {
+        "name": "CITIBANK SENEGAL",
+        "language": "fr"
+      },
+      "region": "SN-DK",
+      "country": "SN",
+      "country_of_jurisdiction": "SN",
+      "address": {
+        "city": "Dakar",
+        "postal_code": "10200",
+        "country": "SN"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "QINWV8RCPXRMH5IWUL13",
+      "legal_entity_name": {
+        "name": "CITIBANK BERHAD",
+        "language": "ms"
+      },
+      "region": "MY-14",
+      "country": "MY",
+      "country_of_jurisdiction": "MY",
+      "address": {
+        "city": "KUALA LUMPUR",
+        "postal_code": "50450",
+        "country": "MY"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIMYKLXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "YJW4XPRSVL5L1ANG2086",
+      "legal_entity_name": {
+        "name": "CITIBANK CANADA",
+        "language": "en"
+      },
+      "region": "CA-NS",
+      "country": "CA",
+      "country_of_jurisdiction": "CA",
+      "address": {
+        "city": "HALIFAX",
+        "postal_code": "B3J 0J2",
+        "country": "CA"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITICATTXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300U8H3KN0K301B23",
+      "legal_entity_name": {
+        "name": "CITIBANK UK LIMITED",
+        "language": "en"
+      },
+      "region": "GB-LND",
+      "country": "GB",
+      "country_of_jurisdiction": "GB",
+      "address": {
+        "city": "London",
+        "postal_code": "E14 5LB",
+        "country": "GB"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CIUKGB2LILN",
+            "CIUKGB2LMAR",
+            "CIUKGB2LQFX",
+            "CIUKGB2LSIG",
+            "CIUKGB2LTRU",
+            "CIUKGB2LUKT",
+            "CIUKGB2LXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300VCGUSH7TB4IS76",
+      "legal_entity_name": {
+        "name": "Citibank Gabon SA",
+        "language": "fr"
+      },
+      "region": "GA-1",
+      "country": "GA",
+      "country_of_jurisdiction": "GA",
+      "address": {
+        "city": "Libreville",
+        "country": "GA"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIGALXXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300EGEGS2CVNRJJ82",
+      "legal_entity_name": {
+        "name": "CITIBANK ZAMBIA LIMITED",
+        "language": "en"
+      },
+      "region": "ZM-09",
+      "country": "ZM",
+      "country_of_jurisdiction": "ZM",
+      "address": {
+        "city": "Lusaka",
+        "postal_code": "10101",
+        "country": "ZM"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIZMLUXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300R581R1UFO7IT65",
+      "legal_entity_name": {
+        "name": "Citibank Cameroun SA",
+        "language": "fr"
+      },
+      "region": "CM-LT",
+      "country": "CM",
+      "country_of_jurisdiction": "CM",
+      "address": {
+        "city": "Douala",
+        "country": "CM"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300QK978F6WDQIK25",
+      "legal_entity_name": {
+        "name": "CITIBANK ARUBA N.V.",
+        "language": "nl"
+      },
+      "region": null,
+      "country": "AW",
+      "country_of_jurisdiction": "AW",
+      "address": {
+        "city": "Oranjestad",
+        "country": "AW"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300KOX37PA65ZMO70",
+      "legal_entity_name": {
+        "name": "Citibank Finance Limited",
+        "language": "en"
+      },
+      "region": null,
+      "country": "SG",
+      "country_of_jurisdiction": "SG",
+      "address": {
+        "city": "Singapore",
+        "postal_code": "486027",
+        "country": "SG"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300K8R9VXUE545U04",
+      "legal_entity_name": {
+        "name": "CITIBANK NMTC CORPORATION",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493008TE4E4DNW1EX82",
+      "legal_entity_name": {
+        "name": "CITIBANK INVESTMENTS LIMITED",
+        "language": "en"
+      },
+      "region": "GB-LND",
+      "country": "GB",
+      "country_of_jurisdiction": "GB",
+      "address": {
+        "city": "London",
+        "postal_code": "E14 5LB",
+        "country": "GB"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "579100KKDGKCFFKKF005",
+      "legal_entity_name": {
+        "name": "CITIBANK N A",
+        "language": "es"
+      },
+      "region": "AR-C",
+      "country": "AR",
+      "country_of_jurisdiction": "AR",
+      "address": {
+        "city": "CAPITAL FEDERAL",
+        "postal_code": "C1036",
+        "country": "AR"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIARBAXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "579100KKDGKCFFKKF093",
+      "legal_entity_name": {
+        "name": "CITIBANK N A",
+        "language": "es"
+      },
+      "region": "AR-C",
+      "country": "AR",
+      "country_of_jurisdiction": "AR",
+      "address": {
+        "city": "CAPITAL FEDERAL",
+        "postal_code": "1036",
+        "country": "AR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "029200343C4N7D2E6H83",
+      "legal_entity_name": {
+        "name": "CITIBANK NIGERIA LIMITED",
+        "language": "en"
+      },
+      "region": "NG-LA",
+      "country": "NG",
+      "country_of_jurisdiction": "NG",
+      "address": {
+        "city": "VICTORIA ISLAND",
+        "postal_code": "106104",
+        "country": "NG"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "NGCP26CITI62"
+        },
+        {
+          "type": "ISIN",
+          "value": "NGCP26CITI54"
+        },
+        {
+          "type": "BIC",
+          "value": [
+            "CITINGLATRD",
+            "CITINGLAXXX",
+            "NIBANEN1XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "5493004HMNJUKQSVVN34",
+      "legal_entity_name": {
+        "name": "CITIBANK TANZANIA LIMITED",
+        "language": "en"
+      },
+      "region": "TZ-02",
+      "country": "TZ",
+      "country_of_jurisdiction": "TZ",
+      "address": {
+        "city": "Kinondoni",
+        "postal_code": "14111",
+        "country": "TZ"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITITZTZXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "VGB4JDQHF6JTNV02DJ20",
+      "legal_entity_name": {
+        "name": "CITIBANK SINGAPORE LIMITED",
+        "language": "en"
+      },
+      "region": "SG-01",
+      "country": "SG",
+      "country_of_jurisdiction": "SG",
+      "address": {
+        "city": "SINGAPORE",
+        "postal_code": "486027",
+        "country": "SG"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITISG21XXX",
+            "CITISGSGGCB",
+            "CITISGSLXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "SSER7O0CV66FF0PRYK94",
+      "legal_entity_name": {
+        "name": "CITIBANK-COLOMBIA SA",
+        "language": "en"
+      },
+      "region": "CO-DC",
+      "country": "CO",
+      "country_of_jurisdiction": "CO",
+      "address": {
+        "city": "BOGOTA",
+        "postal_code": "111711",
+        "country": "CO"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITICO21XXX",
+            "CITICOBBXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "DCQFH37O1JGEEWG3HN05",
+      "legal_entity_name": {
+        "name": "CITIBANK JAPAN LIMITED",
+        "language": "en"
+      },
+      "region": "JP-13",
+      "country": "JP",
+      "country_of_jurisdiction": "JP",
+      "address": {
+        "city": "CHIYODA KU",
+        "postal_code": "100-8132",
+        "country": "JP"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIJPJTXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "4BVL95XIH9NNZF0YN485",
+      "legal_entity_name": {
+        "name": "Citibank (Switzerland) AG",
+        "language": "de"
+      },
+      "region": "CH-ZH",
+      "country": "CH",
+      "country_of_jurisdiction": "CH",
+      "address": {
+        "city": "Z\u00fcrich",
+        "postal_code": "8005",
+        "country": "CH"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CBSWCHZZXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "E57ODZWZ7FF32TWEFA76",
+      "legal_entity_name": {
+        "name": "Citibank, National Association",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57108",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US17312QX958"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QS594"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QV630"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q2Y47"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q3G22"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QZC67"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q2W80"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QM555"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QZD41"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QV226"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QN702"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QS917"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QT584"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q4C09"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QYX14"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "31OGKFG0Y1795OV0AK56",
+      "legal_entity_name": {
+        "name": "CITIBANK INTERNATIONAL LIMITED",
+        "language": "en"
+      },
+      "region": "GB-ENG",
+      "country": "GB",
+      "country_of_jurisdiction": "GB",
+      "address": {
+        "city": "LONDON",
+        "postal_code": "E14 5LB",
+        "country": "GB"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "984500E7FX6880WAFF95",
+      "legal_entity_name": {
+        "name": "Citibank N.A. Cabang Indonesia",
+        "language": "en"
+      },
+      "region": "ID-JK",
+      "country": "ID",
+      "country_of_jurisdiction": "ID",
+      "address": {
+        "city": "JAKARTA",
+        "postal_code": "12190",
+        "country": "ID"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300L2T2STZJSYHY27",
+      "legal_entity_name": {
+        "name": "CITIBANK OMNI MASTER TRUST",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19805-1266",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "USU3090TAD01"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAE83"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAB45"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAA61"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAJ70"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAC28"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAN82"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAJ70"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAQ14"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "5493003EQBZRUPLBR662",
+      "legal_entity_name": {
+        "name": "Citibank Mortgage Reinsurance, Inc.",
+        "language": "en"
+      },
+      "region": "US-VT",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Cambridge",
+        "postal_code": "05464",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300P8JY7KBLZSXM75",
+      "legal_entity_name": {
+        "name": "Citibank Cote d'Ivoire SA",
+        "language": "fr"
+      },
+      "region": "CI-AB",
+      "country": "CI",
+      "country_of_jurisdiction": "CI",
+      "address": {
+        "city": "Abidjan",
+        "country": "CI"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITICIAXXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300JXUJZCVNVYFX03",
+      "legal_entity_name": {
+        "name": "Citibank Strategic Technology Inc.",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Wilmington",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300BEKR7IJPYSEV09",
+      "legal_entity_name": {
+        "name": "CITIBANK SQUARE CONDOMINIUM CORP.",
+        "language": "tl"
+      },
+      "region": null,
+      "country": "PH",
+      "country_of_jurisdiction": "PH",
+      "address": {
+        "city": "QUEZON CITY",
+        "postal_code": "1110",
+        "country": "PH"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "54930023ORC1CLCNQA42",
+      "legal_entity_name": {
+        "name": "CITIBANK INSURANCE BROKERAGE S.A.",
+        "language": "en"
+      },
+      "region": "GR-I",
+      "country": "GR",
+      "country_of_jurisdiction": "GR",
+      "address": {
+        "city": "ATHENS",
+        "postal_code": "117 42",
+        "country": "GR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300JNCM5PJBBGQ942",
+      "legal_entity_name": {
+        "name": "Citibank Cartoes Participacoes Ltda.",
+        "language": "pt"
+      },
+      "region": "BR-SP",
+      "country": "BR",
+      "country_of_jurisdiction": "BR",
+      "address": {
+        "city": "Sao Paulo",
+        "postal_code": "01311-920",
+        "country": "BR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300K7L8YW8M215U46",
+      "legal_entity_name": {
+        "name": "CITIBANK HOLDINGS IRELAND LIMITED",
+        "language": "en"
+      },
+      "region": "IE-D",
+      "country": "IE",
+      "country_of_jurisdiction": "IE",
+      "address": {
+        "city": "DUBLIN",
+        "postal_code": "D01 X9R7",
+        "country": "IE"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300W72VIS5XUH9H15",
+      "legal_entity_name": {
+        "name": "CITIBANK (TRINIDAD & TOBAGO) LIMITED",
+        "language": "en"
+      },
+      "region": "TT-POS",
+      "country": "TT",
+      "country_of_jurisdiction": "TT",
+      "address": {
+        "city": "PORT OF SPAIN",
+        "postal_code": "150123",
+        "country": "TT"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITITTPSXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300Z3HJVCCQUD3S79",
+      "legal_entity_name": {
+        "name": "CITIBANK (UK) PENSION PLAN",
+        "language": "en"
+      },
+      "region": "GB-LND",
+      "country": "GB",
+      "country_of_jurisdiction": "GB",
+      "address": {
+        "city": "LONDON",
+        "postal_code": "E14 5LB",
+        "country": "GB"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "U8K0SDHEW2A30M4SPI26",
+      "legal_entity_name": {
+        "name": "Banco Citibank (Panama), S.A.",
+        "language": "es"
+      },
+      "region": "PA-8",
+      "country": "PA",
+      "country_of_jurisdiction": "PA",
+      "address": {
+        "city": "Panama City",
+        "country": "PA"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "BAXBPAP1XXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "CVIY2OR50SIBI0AC0M15",
+      "legal_entity_name": {
+        "name": "CITIBANK SECURITIES (TAIWAN) LIMITED",
+        "language": "en"
+      },
+      "region": "TW-TPE",
+      "country": "TW",
+      "country_of_jurisdiction": "TW",
+      "address": {
+        "city": "TAIPEI",
+        "postal_code": "105",
+        "country": "TW"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "FWFDU9OTL5768ZW4K495",
+      "legal_entity_name": {
+        "name": "CITIBANK MALAYSIA (L) LIMITED",
+        "language": "ms"
+      },
+      "region": "MY-15",
+      "country": "MY",
+      "country_of_jurisdiction": "MY",
+      "address": {
+        "city": "VICTORIA",
+        "postal_code": "87000",
+        "country": "MY"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "MYTK5NHHP1G8TVFGT193",
+      "legal_entity_name": {
+        "name": "CITIBANK DEL PERU S.A",
+        "language": "es"
+      },
+      "region": "PE-LIM",
+      "country": "PE",
+      "country_of_jurisdiction": "PE",
+      "address": {
+        "city": "SAN ISIDRO",
+        "postal_code": "15047",
+        "country": "PE"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIPEPLXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "G2M96IXONJEAOBNT6B40",
+      "legal_entity_name": {
+        "name": "CITIBANK LONDON NOMINEES LIMITED",
+        "language": "en"
+      },
+      "region": "GB-LND",
+      "country": "GB",
+      "country_of_jurisdiction": "GB",
+      "address": {
+        "city": "London",
+        "postal_code": "E14 5LB",
+        "country": "GB"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "8KA1PQPA9THGG1BNCT31",
+      "legal_entity_name": {
+        "name": "CITIBANK (HONG KONG) LIMITED",
+        "language": "en"
+      },
+      "region": null,
+      "country": "HK",
+      "country_of_jurisdiction": "HK",
+      "address": {
+        "city": "HONG KONG",
+        "country": "HK"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIHKAXXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "CYSD4L2598RQ9BPPCB72",
+      "legal_entity_name": {
+        "name": "CITIBANK OVERSEAS INVESTMENT CORPORATION",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW CASTLE",
+        "postal_code": "19720",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "1P0UUG7LC1S92QTNHG39",
+      "legal_entity_name": {
+        "name": "BANCO CITIBANK S A",
+        "language": "pt"
+      },
+      "region": "BR-SP",
+      "country": "BR",
+      "country_of_jurisdiction": "BR",
+      "address": {
+        "city": "SAO PAULO",
+        "postal_code": "01311-920",
+        "country": "BR"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIBRBRXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "984500F7D3A258R1CB96",
+      "legal_entity_name": {
+        "name": "CITIBANK EUROPE PUBLIC LIMITED COMPANY",
+        "language": "fr"
+      },
+      "region": "FR-75C",
+      "country": "FR",
+      "country_of_jurisdiction": "FR",
+      "address": {
+        "city": "PARIS",
+        "postal_code": "75008",
+        "country": "FR"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIFRPPXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300YI6IWMDN71W350",
+      "legal_entity_name": {
+        "name": "Citibank Brazilian Annex VI Trust",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "635400I46KI1MOIW5Y72",
+      "legal_entity_name": {
+        "name": "Citibank Employee Benefit Plan - Ireland",
+        "language": "en"
+      },
+      "region": "IE-D",
+      "country": "IE",
+      "country_of_jurisdiction": "IE",
+      "address": {
+        "city": "Dublin",
+        "postal_code": "D02 VY52",
+        "country": "IE"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300RY9JVII2WL2K42",
+      "legal_entity_name": {
+        "name": "Citibank Central America (Nassau) Limited",
+        "language": "en"
+      },
+      "region": null,
+      "country": "BS",
+      "country_of_jurisdiction": "BS",
+      "address": {
+        "city": "Nassau",
+        "country": "BS"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493000AI27HXLDYHX23",
+      "legal_entity_name": {
+        "name": "CITIBANK NOMINEES (NEW ZEALAND) LIMITED",
+        "language": "en"
+      },
+      "region": "NZ-AUK",
+      "country": "NZ",
+      "country_of_jurisdiction": "NZ",
+      "address": {
+        "city": "Auckland",
+        "postal_code": "1010",
+        "country": "NZ"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300BSM2K5JOIUQ068",
+      "legal_entity_name": {
+        "name": "CITIBANK NOMINEES SINGAPORE PTE LTD",
+        "language": "en"
+      },
+      "region": "SG-01",
+      "country": "SG",
+      "country_of_jurisdiction": "SG",
+      "address": {
+        "city": "Singapore",
+        "postal_code": "486027",
+        "country": "SG"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300BJ8V8EPIFYWY08",
+      "legal_entity_name": {
+        "name": "Citibank Consumer Nominees Pte Ltd",
+        "language": "en"
+      },
+      "region": null,
+      "country": "SG",
+      "country_of_jurisdiction": "SG",
+      "address": {
+        "city": "Singapore",
+        "postal_code": "486027",
+        "country": "SG"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493005I5M1WOSIMPS05",
+      "legal_entity_name": {
+        "name": "CITIBANK CANADA INVESTMENT FUNDS LIMITED",
+        "language": "en"
+      },
+      "region": "CA-ON",
+      "country": "CA",
+      "country_of_jurisdiction": "CA",
+      "address": {
+        "city": "TORONTO",
+        "postal_code": "M5J 2M3",
+        "country": "CA"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "X0D9FYCZ03FY7LCERY46",
+      "legal_entity_name": {
+        "name": "Banco Citibank de Guatemala, S.A.",
+        "language": "es"
+      },
+      "region": "GT-01",
+      "country": "GT",
+      "country_of_jurisdiction": "GT",
+      "address": {
+        "city": "Guatemala City",
+        "postal_code": "01010",
+        "country": "GT"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "N1FBEDJ5J41VKZLO2475",
+      "legal_entity_name": {
+        "name": "CITIBANK EUROPE PUBLIC LIMITED COMPANY",
+        "language": "en"
+      },
+      "region": "IE-D",
+      "country": "IE",
+      "country_of_jurisdiction": "IE",
+      "address": {
+        "city": "DUBLIN",
+        "postal_code": "D01 T8Y1",
+        "country": "IE"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "BIC",
+          "value": [
+            "CITIATWXXXX",
+            "CITIBEBXXXX",
+            "CITIBGSFXXX",
+            "CITICZPXXXX",
+            "CITIDEFFXXX",
+            "CITIDKKXXXX",
+            "CITIESMXXXX",
+            "CITIFIHXXXX",
+            "CITIGB2LIPP",
+            "CITIGB2LJER",
+            "CITIGB2LLON",
+            "CITIGRAAXXX",
+            "CITIHUHXXXX",
+            "CITIIE2XXXX",
+            "CITILULXXXX",
+            "CITINL2XXXX",
+            "CITINOKXXXX",
+            "CITIPTPXXXX",
+            "CITIROBUXXX",
+            "CITISESXXXX",
+            "CITISKBAXXX",
+            "CITTGB21001",
+            "CITTGB21002",
+            "CITTGB21003",
+            "CITTGB21004",
+            "CITTGB21005",
+            "CITTGB21006",
+            "CITTGB21007",
+            "CITTGB21008",
+            "CITTGB21009",
+            "CITTGB21010",
+            "CITTGB21011",
+            "CITTGB21012",
+            "CITTGB21XXX",
+            "CITTGB2LCMU",
+            "CITTGB2LELA",
+            "CITTGB2LHAM",
+            "CITTGB2LPBG",
+            "CITTGB2LTRA",
+            "CITTGB2LXXX",
+            "CITTITMMXXX"
+          ]
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "R8AG6FXVDQAMDKCSJJ64",
+      "legal_entity_name": {
+        "name": "CITIBANK CREDIT CARD ISSUANCE TRUST",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19809",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US17305EGE95"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EDT91"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EDU64"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGX76"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGS81"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGW93"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGZ25"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EET82"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGJ82"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGP43"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGY59"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300TI1HXKFOM17H96",
+      "legal_entity_name": {
+        "name": "CITIBANK OMNI ISSUANCE TRUST SERIES 2019",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19805",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "335800I4HZC5MKOPHE63",
+      "legal_entity_name": {
+        "name": "CITIBANK N.A. (INDIAN BRANCHES) PROVIDENT FUND",
+        "language": "en"
+      },
+      "region": "IN-MH",
+      "country": "IN",
+      "country_of_jurisdiction": "IN",
+      "address": {
+        "city": "MUMBAI",
+        "postal_code": "400051",
+        "country": "IN"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300IKQ6Y8JKZHVZ64",
+      "legal_entity_name": {
+        "name": "BRAZIL BOND TRUST - CITIBANK DTVM SA",
+        "language": "pt"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10043",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300U3LMQTX8ECOW36",
+      "legal_entity_name": {
+        "name": "Citibank Credit Card Master Trust I",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104-0432",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US17303CAC55"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17303CAB72"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "5493008T4BEL3Q8ZO665",
+      "legal_entity_name": {
+        "name": "CITIBANK NOMINEES (IRELAND) DESIGNATED ACTIVITY COMPANY",
+        "language": "en"
+      },
+      "region": "IE-D",
+      "country": "IE",
+      "country_of_jurisdiction": "IE",
+      "address": {
+        "city": "DUBLIN 1",
+        "postal_code": "D01 T8Y1",
+        "country": "IE"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "54930079JKFNSDPRU313",
+      "legal_entity_name": {
+        "name": "CITIBANK AUSTRALIA STAFF SUPERANNUATION PTY LIMITED",
+        "language": "en"
+      },
+      "region": "AU-NSW",
+      "country": "AU",
+      "country_of_jurisdiction": "AU",
+      "address": {
+        "city": "SYDNEY",
+        "postal_code": "2000",
+        "country": "AU"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300LDYZKK9X53P769",
+      "legal_entity_name": {
+        "name": "Citibank Leasing S A Arrendamento Mercantil",
+        "language": "pt"
+      },
+      "region": "BR-SP",
+      "country": "BR",
+      "country_of_jurisdiction": "BR",
+      "address": {
+        "city": "Sao Paulo",
+        "postal_code": "01311-920",
+        "country": "BR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "335800EY4VKFSWAYS727",
+      "legal_entity_name": {
+        "name": "CITIBANK VF PLATINUM TRUST SEP2022 TRANCH II",
+        "language": "en"
+      },
+      "region": "IN-MH",
+      "country": "IN",
+      "country_of_jurisdiction": "IN",
+      "address": {
+        "city": "MUMBAI",
+        "postal_code": "400001",
+        "country": "IN"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300MU6KGNWIOHDL69",
+      "legal_entity_name": {
+        "name": "CITIBANK INDIA CORPORATE LOANS TRUST APR 2017",
+        "language": "en"
+      },
+      "region": "IN-MH",
+      "country": "IN",
+      "country_of_jurisdiction": "IN",
+      "address": {
+        "city": "MUMBAI",
+        "postal_code": "400 001",
+        "country": "IN"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300C3NOIZINBJL380",
+      "legal_entity_name": {
+        "name": "CITIBANK PENSIONS TRUSTEES IRELAND DESIGNATED ACTIVITY COMPANY",
+        "language": "en"
+      },
+      "region": "IE-D",
+      "country": "IE",
+      "country_of_jurisdiction": "IE",
+      "address": {
+        "city": "DUBLIN",
+        "postal_code": "D01 T8Y1",
+        "country": "IE"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300HDP5227IBB1E03",
+      "legal_entity_name": {
+        "name": "CITIBANK DISTRIBUIDORA DE TITULOS E VALORES MOB SA",
+        "language": "pt"
+      },
+      "region": "BR-SP",
+      "country": "BR",
+      "country_of_jurisdiction": "BR",
+      "address": {
+        "city": "BELA VISTA",
+        "postal_code": "01310-200",
+        "country": "BR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493003FLCJKT7HD5W71",
+      "legal_entity_name": {
+        "name": "GRUPO FINANCIERO CITIBANK DE COSTA RICA SOCIEDAD ANONIMA",
+        "language": "es"
+      },
+      "region": "CR-SJ",
+      "country": "CR",
+      "country_of_jurisdiction": "CR",
+      "address": {
+        "city": "San Jos\u00e9",
+        "postal_code": "11801",
+        "country": "CR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300OCLZNO2LQM8590",
+      "legal_entity_name": {
+        "name": "CORPORACION ACCIONARIA CITIBANK DE COSTA RICA SOCIEDAD ANONIMA",
+        "language": "es"
+      },
+      "region": "CR-SJ",
+      "country": "CR",
+      "country_of_jurisdiction": "CR",
+      "address": {
+        "city": "San Jose",
+        "postal_code": "10107",
+        "country": "CR"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300OF877CJXN7OH04",
+      "legal_entity_name": {
+        "name": "CITIBANK EMPLOYEE BENEFIT PLAN TRUSTEES IRELAND DESIGNATED ACTIVITY COMPANY",
+        "language": "en"
+      },
+      "region": "IE-D",
+      "country": "IE",
+      "country_of_jurisdiction": "IE",
+      "address": {
+        "city": "DUBLIN 1",
+        "postal_code": "D01 T8Y1",
+        "country": "IE"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "259400F7LJGPETMT4B29",
+      "legal_entity_name": {
+        "name": "Citibank International plc (Publiczna Sp\u00f3\u0142ka Akcyjna) Oddzia\u0142 w Polsce",
+        "language": "pl-PL"
+      },
+      "region": "PL-14",
+      "country": "PL",
+      "country_of_jurisdiction": "PL",
+      "address": {
+        "city": "Warszawa",
+        "postal_code": "00-613",
+        "country": "PL"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "259400MDGXPDHUBP6R42",
+      "legal_entity_name": {
+        "name": "Citibank Europe plc (Publiczna Sp\u00f3\u0142ka Akcyjna) Oddzia\u0142 w Polsce",
+        "language": "pl-PL"
+      },
+      "region": "PL-14",
+      "country": "PL",
+      "country_of_jurisdiction": "PL",
+      "address": {
+        "city": "Warszawa",
+        "postal_code": "00-613",
+        "country": "PL"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300SMQ1ZNBWLZ4O85",
+      "legal_entity_name": {
+        "name": "CITIBANK INTERNATIONAL PLC AS TRUSTEE OF THE GLOBAL EQUITY TRUST II",
+        "language": "en"
+      },
+      "region": "GB-TWH",
+      "country": "GB",
+      "country_of_jurisdiction": "GB",
+      "address": {
+        "city": "LONDON",
+        "postal_code": "E14 5LB",
+        "country": "GB"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493002ED52P1192NL04",
+      "legal_entity_name": {
+        "name": "Sun Life Financial (U.S.) Reinsurance Company and Citibank, as Trustee \"The Trust\"",
+        "language": "en"
+      },
+      "region": "US-VT",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Burlington",
+        "postal_code": "05401",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "2138008HBE32TV29JY47",
+      "legal_entity_name": {
+        "name": "CITIBANK N.A., DANIEL C. DONOGHUE II & RHODORA M DONOGHUE II CO-TTEEE OF THE LEGION OF CHRIST CONSECRATED JFDII TRUST",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "SIOUX FALLS",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "213800PSIFQ2LQLDZ491",
+      "legal_entity_name": {
+        "name": "CITIBANK N.A., DANIEL C. DONOGHUE II & JOHN F. DONOGHUE II CO-TTEEE OF THE LEGION OF CHRIST CONSECRATED RMD TRUST",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "SIOUX FALLS",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300U10PDQT5GRLB78",
+      "legal_entity_name": {
+        "name": "Trust U/A/D Nov 8, 2007 among Sun Life Assurance Company of Canada, Citibank, N.A., as Trustee, and the Commissioner of the Office of Financial and Insurance Regulation of the State of Michigan and Sun Life Assurance Company of Canada",
+        "language": "en"
+      },
+      "region": "CA-ON",
+      "country": "CA",
+      "country_of_jurisdiction": "CA",
+      "address": {
+        "city": "Toronto",
+        "postal_code": "M5J 0B6",
+        "country": "CA"
+      },
+      "tickers_and_instruments": null
+    }
+  ]
+}

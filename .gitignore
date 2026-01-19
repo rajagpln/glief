@@ -136,6 +136,4 @@ Thumbs.db
 # Project specific
 *.venv
 .venv/
-CitiOut.txt
-CitiOutNameOnly.json
-countries_reference.json
+temp.txt
