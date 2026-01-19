@@ -12,7 +12,7 @@ A comprehensive Python toolkit for searching and retrieving data from the GLEIF 
   - Region and Country
   - Country of Jurisdiction
   - Address information
-  - Associated financial instruments (BIC codes, ISINs)
+- Optional associated financial instruments (BIC codes, ISINs)
 - **Flexible search**: Two search modes - name-only (default) or full-text
 
 ### gleif_reference_data.py
@@ -54,6 +54,18 @@ By default, the script searches only in **legal entity names**. To search across
 python gleif_search.py --fulltext "search string"
 ```
 
+To include BIC/ISIN enrichment (extra API calls), add `--include-instruments`:
+
+```bash
+python gleif_search.py "search string" --include-instruments
+```
+
+To cap instrument lookups, use `--instrument-request-budget`:
+
+```bash
+python gleif_search.py "search string" --include-instruments --instrument-request-budget 10
+```
+
 ### Examples
 
 **Search for entities with "Citibank" in their legal name (default):**
@@ -76,14 +88,27 @@ python gleif_search.py "Microsoft Corporation"
 python gleif_search.py "Bank of England"
 ```
 
+**Filter search results by country (2-letter ISO code):**
+```bash
+python gleif_search.py "Citibank" --country GB
+python gleif_search.py "Citibank" -c US
+```
+
+This filters results to entities whose legal address is in the specified country. Can be combined with `--fulltext` for comprehensive searches in a specific country:
+
+```bash
+python gleif_search.py --fulltext "Bank" --country CN
+```
+
 ### Output Format
 
-The script outputs JSON with the following structure:
+The script outputs JSON with the following structure (the `tickers_and_instruments` field appears only when `--include-instruments` is used):
 
 ```json
 {
   "query": "search string",
   "search_type": "name",
+  "country_filter": null,
   "results_count": 50,
   "results": [
     {
@@ -145,6 +170,8 @@ Complete address information including:
 ### Tickers and Financial Instruments
 - **BIC (Bank Identifier Code)**: Used for financial transactions
 - **ISIN (International Securities Identification Number)**: Used for financial securities
+
+Note: `tickers_and_instruments` is included only when `--include-instruments` is used.
 
 ## Search Types
 

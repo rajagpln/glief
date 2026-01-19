@@ -12,6 +12,7 @@ Usage:
 import json
 import sys
 import argparse
+import time
 import requests
 from typing import List, Dict, Any, Optional
 
@@ -22,20 +23,38 @@ BASE_URL = "https://api.gleif.org/api/v1"
 class GLEIFSearcher:
     """Search for legal entities using the GLEIF API."""
 
-    def __init__(self, page_size: int = 100):
+    def __init__(
+        self,
+        page_size: int = 100,
+        instrument_request_budget: int = 20,
+        max_retries: int = 3,
+        backoff_base_seconds: float = 0.5,
+    ):
         """
         Initialize the GLEIF searcher.
 
         Args:
             page_size: Number of results per page (max 100)
+            instrument_request_budget: Max number of instrument lookup requests
+            max_retries: Max retries for transient instrument lookup failures
+            backoff_base_seconds: Base seconds for exponential backoff
         """
         self.page_size = min(page_size, 100)
+        self.instrument_request_budget = max(0, instrument_request_budget)
+        self.max_retries = max(0, max_retries)
+        self.backoff_base_seconds = max(0.0, backoff_base_seconds)
         self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "GLEIF-Search-Tool/1.0"
         })
 
-    def search_entities(self, query: str, search_type: str = "name", country_of_jurisdiction: Optional[str] = None) -> List[Dict[str, Any]]:
+    def search_entities(
+        self,
+        query: str,
+        search_type: str = "name",
+        country_of_jurisdiction: Optional[str] = None,
+        include_instruments: bool = False,
+    ) -> List[Dict[str, Any]]:
         """
         Search for legal entities matching the given query.
 
@@ -44,6 +63,7 @@ class GLEIFSearcher:
             search_type: Type of search - "name" (default) for legal entity name only,
                         or "fulltext" to search across all fields
             country_of_jurisdiction: Optional 2-letter country code to filter results
+            include_instruments: Whether to include BIC/ISIN enrichment
 
         Returns:
             List of matching entities with extracted information
@@ -66,14 +86,13 @@ class GLEIFSearcher:
                     "page[size]": self.page_size
                 }
                 
-                # Add jurisdiction filter if provided
+                # Add country filter if provided
                 if country_of_jurisdiction:
                     params["filter[entity.legalAddress.country]"] = country_of_jurisdiction.upper()
 
-                response = self.session.get(
+                response = self._get_with_backoff(
                     f"{BASE_URL}/lei-records",
-                    params=params,
-                    timeout=10
+                    params=params
                 )
                 response.raise_for_status()
 
@@ -84,7 +103,7 @@ class GLEIFSearcher:
                     break
 
                 for item in data["data"]:
-                    lei_record = self._extract_lei_record_info(item)
+                    lei_record = self._extract_lei_record_info(item, include_instruments)
                     if lei_record:
                         entities.append(lei_record)
 
@@ -105,7 +124,11 @@ class GLEIFSearcher:
 
         return entities
 
-    def _extract_lei_record_info(self, record: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def _extract_lei_record_info(
+        self,
+        record: Dict[str, Any],
+        include_instruments: bool,
+    ) -> Optional[Dict[str, Any]]:
         """
         Extract relevant information from a lei-records result.
 
@@ -124,15 +147,17 @@ class GLEIFSearcher:
                 return None
 
             # Extract the information we need
+            registration = attributes.get("registration", {})
             entity_info = {
                 "legal_entity_id": lei,
                 "legal_entity_name": entity.get("legalName"),
                 "region": self._extract_region(entity),
                 "country": self._extract_country(entity),
-                "country_of_jurisdiction": self._extract_jurisdiction(entity),
-                "address": self._extract_address(entity),
-                "tickers_and_instruments": self._extract_financial_instruments(record)
+                "country_of_jurisdiction": self._extract_jurisdiction(entity, registration),
+                "address": self._extract_address(entity)
             }
+            if include_instruments:
+                entity_info["tickers_and_instruments"] = self._extract_financial_instruments(record)
 
             return entity_info
 
@@ -164,14 +189,17 @@ class GLEIFSearcher:
         legal_address = entity.get("legalAddress", {})
         return legal_address.get("country")
 
-    def _extract_jurisdiction(self, entity: Dict[str, Any]) -> Optional[str]:
+    def _extract_jurisdiction(
+        self,
+        entity: Dict[str, Any],
+        registration: Dict[str, Any],
+    ) -> Optional[str]:
         """Extract jurisdiction information from entity data."""
         # Jurisdiction is typically the country of legal address
         legal_address = entity.get("legalAddress", {})
         country = legal_address.get("country")
         
         # Try to get more specific jurisdiction info if available
-        registration = entity.get("registration", {})
         jurisdiction = registration.get("jurisdiction")
         
         return jurisdiction or country
@@ -197,6 +225,17 @@ class GLEIFSearcher:
 
         return address if address else None
 
+    def _get_with_backoff(self, url: str, params: Optional[Dict[str, Any]] = None) -> requests.Response:
+        """GET with simple retry/backoff for transient errors."""
+        for attempt in range(self.max_retries + 1):
+            response = self.session.get(url, params=params, timeout=10)
+            if response.status_code not in {429, 500, 502, 503, 504}:
+                return response
+            if attempt < self.max_retries:
+                delay = self.backoff_base_seconds * (2 ** attempt)
+                time.sleep(delay)
+        return response
+
     def _extract_financial_instruments(self, record: Dict[str, Any]) -> Optional[List[Dict[str, str]]]:
         """Extract ticker symbols and financial instruments associated with the entity."""
         instruments = []
@@ -207,16 +246,33 @@ class GLEIFSearcher:
             isins_link = relationships["isins"].get("links", {}).get("related")
             if isins_link:
                 try:
-                    response = self.session.get(isins_link, timeout=10)
-                    response.raise_for_status()
-                    isins_data = response.json()
+                    page_num = 1
+                    while True:
+                        if self.instrument_request_budget <= 0:
+                            print("Instrument lookup budget exhausted; stopping ISIN enrichment.", file=sys.stderr)
+                            break
+                        params = {
+                            "page[number]": page_num,
+                            "page[size]": 200,
+                        }
+                        response = self._get_with_backoff(isins_link, params=params)
+                        self.instrument_request_budget -= 1
+                        response.raise_for_status()
+                        isins_data = response.json()
 
-                    for isin_item in isins_data.get("data", []):
-                        isin_attrs = isin_item.get("attributes", {})
-                        instruments.append({
-                            "type": "ISIN",
-                            "value": isin_attrs.get("isin")
-                        })
+                        for isin_item in isins_data.get("data", []):
+                            isin_attrs = isin_item.get("attributes", {})
+                            instruments.append({
+                                "type": "ISIN",
+                                "value": isin_attrs.get("isin")
+                            })
+
+                        meta = isins_data.get("meta", {})
+                        pagination = meta.get("pagination", {})
+                        if not pagination.get("lastPage") or pagination.get("lastPage") == page_num:
+                            break
+
+                        page_num += 1
                 except Exception as e:
                     print(f"Error fetching ISINs: {e}", file=sys.stderr)
 
@@ -268,6 +324,17 @@ Examples:
         "-c",
         help="Filter results by country of jurisdiction (2-letter ISO country code, e.g., 'GB', 'US', 'CN'). Optional."
     )
+    parser.add_argument(
+        "--include-instruments",
+        action="store_true",
+        help="Include BIC/ISIN enrichment (may increase API requests)."
+    )
+    parser.add_argument(
+        "--instrument-request-budget",
+        type=int,
+        default=20,
+        help="Max number of instrument lookup requests (default: 20)."
+    )
 
     args = parser.parse_args()
 
@@ -284,8 +351,13 @@ Examples:
         print(f"Country filter: {args.country.upper()}", file=sys.stderr)
     print("", file=sys.stderr)
 
-    searcher = GLEIFSearcher()
-    results = searcher.search_entities(query, search_type=search_type, country_of_jurisdiction=args.country)
+    searcher = GLEIFSearcher(instrument_request_budget=args.instrument_request_budget)
+    results = searcher.search_entities(
+        query,
+        search_type=search_type,
+        country_of_jurisdiction=args.country,
+        include_instruments=args.include_instruments,
+    )
 
     # Format output as JSON
     output = {

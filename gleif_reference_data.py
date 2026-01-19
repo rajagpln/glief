@@ -14,6 +14,7 @@ Usage:
 import json
 import sys
 import argparse
+import time
 import requests
 import os
 from typing import Dict, List, Any, Optional
@@ -25,11 +26,18 @@ BASE_URL = "https://api.gleif.org/api/v1"
 class GLEIFReferenceDataFetcher:
     """Fetch reference data from the GLEIF API."""
 
-    def __init__(self, output_dir: str = "./reference_data"):
+    def __init__(
+        self,
+        output_dir: str = "./reference_data",
+        max_retries: int = 3,
+        backoff_base_seconds: float = 0.5,
+    ):
         """Initialize the reference data fetcher.
         
         Args:
             output_dir: Directory to save JSON files (default: ./reference_data)
+            max_retries: Max retries for transient failures
+            backoff_base_seconds: Base seconds for exponential backoff
         """
         self.output_dir = output_dir
         # Create output directory if it doesn't exist
@@ -40,6 +48,8 @@ class GLEIFReferenceDataFetcher:
         self.session.headers.update({
             "User-Agent": "GLEIF-Reference-Data-Tool/1.0"
         })
+        self.max_retries = max(0, max_retries)
+        self.backoff_base_seconds = max(0.0, backoff_base_seconds)
         self.endpoints = {
             "countries": {
                 "url": f"{BASE_URL}/countries",
@@ -184,7 +194,7 @@ class GLEIFReferenceDataFetcher:
                 "page[size]": page_size
             }
 
-            response = self.session.get(url, params=params, timeout=10)
+            response = self._get_with_backoff(url, params=params)
             response.raise_for_status()
 
             data = response.json()
@@ -206,6 +216,17 @@ class GLEIFReferenceDataFetcher:
             page_num += 1
 
         return all_items
+
+    def _get_with_backoff(self, url: str, params: Optional[Dict[str, Any]] = None) -> requests.Response:
+        """GET with simple retry/backoff for transient errors."""
+        for attempt in range(self.max_retries + 1):
+            response = self.session.get(url, params=params, timeout=10)
+            if response.status_code not in {429, 500, 502, 503, 504}:
+                return response
+            if attempt < self.max_retries:
+                delay = self.backoff_base_seconds * (2 ** attempt)
+                time.sleep(delay)
+        return response
 
     def _process_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -301,10 +322,26 @@ Examples:
         default="./reference_data",
         help="Output directory for JSON files (default: ./reference_data)"
     )
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=3,
+        help="Max retries for transient failures (default: 3)"
+    )
+    parser.add_argument(
+        "--backoff-base-seconds",
+        type=float,
+        default=0.5,
+        help="Base seconds for exponential backoff (default: 0.5)"
+    )
 
     args = parser.parse_args()
 
-    fetcher = GLEIFReferenceDataFetcher(output_dir=args.output)
+    fetcher = GLEIFReferenceDataFetcher(
+        output_dir=args.output,
+        max_retries=args.max_retries,
+        backoff_base_seconds=args.backoff_base_seconds,
+    )
 
     # Handle --list
     if args.list:

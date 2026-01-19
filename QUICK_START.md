@@ -97,15 +97,27 @@ cat regions.json | jq '.items[] | select(.code == "US-NY")'
 }
 ```
 
-### Example 5: Full-text search with geographic filtering
+### Example 5: Search with country filtering
 
+There are two ways to filter by country:
+
+**Method 1: Use the `--country` flag (recommended - server-side filtering):**
 ```bash
-# Search for all "Bank" entities (full-text search)
+# Search for Citibank entities in the UK only
+python gleif_search.py "Citibank" --country GB
+
+# Full-text search for all entities with "Bank" in China
+python gleif_search.py --fulltext "Bank" --country CN
+```
+
+**Method 2: Client-side filtering with jq:**
+```bash
+# Search for all "Bank" entities (full-text search), then filter to China
 python gleif_search.py --fulltext "Bank" | \
   jq '.results[] | select(.country == "CN")'
 ```
 
-This finds all entities with "Bank" anywhere in their record, filtered to China only.
+The `--country` flag is more efficient as it filters at the API level.
 
 ---
 

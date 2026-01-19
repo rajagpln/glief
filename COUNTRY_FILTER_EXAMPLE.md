@@ -123,7 +123,7 @@ The JSON output includes the country filter information:
 
 - **Case-insensitive**: Both `GB` and `gb` work
 - **Optional**: Omit the flag to search without country filtering
-- **API-native**: Uses GLEIF API's built-in country filter for efficiency
+- **API-native**: Uses GLEIF API's `entity.legalAddress.country` filter for efficiency
 - **Combined with search type**: Works with both `--fulltext` and name-only searches
 
 ## Tips
