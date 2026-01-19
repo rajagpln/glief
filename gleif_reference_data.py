@@ -2,18 +2,20 @@
 """
 GLEIF Reference Data Extractor
 
-This script fetches reference data from the GLEIF API and outputs it as JSON.
+This script fetches reference data from the GLEIF API and saves it as JSON files.
 Includes country codes, region codes, entity legal forms, etc.
 
 Usage:
     python gleif_reference_data.py [data_type]
     python gleif_reference_data.py --all
+    python gleif_reference_data.py --output /path/to/directory
 """
 
 import json
 import sys
 import argparse
 import requests
+import os
 from typing import Dict, List, Any, Optional
 
 # GLEIF API base URL
@@ -23,8 +25,17 @@ BASE_URL = "https://api.gleif.org/api/v1"
 class GLEIFReferenceDataFetcher:
     """Fetch reference data from the GLEIF API."""
 
-    def __init__(self):
-        """Initialize the reference data fetcher."""
+    def __init__(self, output_dir: str = "./reference_data"):
+        """Initialize the reference data fetcher.
+        
+        Args:
+            output_dir: Directory to save JSON files (default: ./reference_data)
+        """
+        self.output_dir = output_dir
+        # Create output directory if it doesn't exist
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
+            print(f"Created directory: {self.output_dir}", file=sys.stderr)
         self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "GLEIF-Reference-Data-Tool/1.0"
@@ -62,16 +73,17 @@ class GLEIFReferenceDataFetcher:
 
     def fetch_all_data(self) -> Dict[str, Any]:
         """
-        Fetch all reference data from GLEIF API.
+        Fetch all reference data from GLEIF API and save to JSON files.
 
         Returns:
-            Dictionary with all reference data organized by type
+            Dictionary with metadata about saved files
         """
-        all_data = {
+        summary = {
             "timestamp": self._get_timestamp(),
             "api_version": "v1",
             "source": "GLEIF API",
-            "data": {}
+            "output_directory": self.output_dir,
+            "files_saved": {}
         }
 
         for endpoint_name, endpoint_info in self.endpoints.items():
@@ -79,24 +91,42 @@ class GLEIFReferenceDataFetcher:
             try:
                 data = self._fetch_endpoint(endpoint_info["url"])
                 if data:
-                    all_data["data"][endpoint_name] = {
+                    # Create the data structure
+                    file_data = {
+                        "timestamp": self._get_timestamp(),
+                        "type": endpoint_name,
                         "description": endpoint_info["description"],
                         "count": len(data),
                         "items": data
                     }
-                    print(f"  ✓ Retrieved {len(data)} items", file=sys.stderr)
+                    
+                    # Save to file
+                    filename = f"{endpoint_name}.json"
+                    filepath = os.path.join(self.output_dir, filename)
+                    self._save_to_file(filepath, file_data)
+                    
+                    summary["files_saved"][endpoint_name] = {
+                        "filename": filename,
+                        "count": len(data),
+                        "filepath": filepath
+                    }
+                    print(f"  ✓ Retrieved {len(data)} items → {filename}", file=sys.stderr)
             except Exception as e:
                 print(f"  ✗ Error: {e}", file=sys.stderr)
-                all_data["data"][endpoint_name] = {
-                    "description": endpoint_info["description"],
+                summary["files_saved"][endpoint_name] = {
                     "error": str(e)
                 }
 
-        return all_data
+        # Save summary file
+        summary_path = os.path.join(self.output_dir, "_summary.json")
+        self._save_to_file(summary_path, summary)
+        print(f"\n✓ Summary saved to _summary.json", file=sys.stderr)
+        
+        return summary
 
     def fetch_data_by_type(self, data_type: str) -> Optional[Dict[str, Any]]:
         """
-        Fetch a specific type of reference data.
+        Fetch a specific type of reference data and save to JSON file.
 
         Args:
             data_type: Type of data to fetch (countries, regions, etc.)
@@ -122,7 +152,13 @@ class GLEIFReferenceDataFetcher:
                     "count": len(data),
                     "items": data
                 }
-                print(f"✓ Retrieved {len(data)} items", file=sys.stderr)
+                
+                # Save to file
+                filename = f"{data_type}.json"
+                filepath = os.path.join(self.output_dir, filename)
+                self._save_to_file(filepath, result)
+                
+                print(f"✓ Retrieved {len(data)} items → {filename}", file=sys.stderr)
                 return result
         except Exception as e:
             print(f"✗ Error: {e}", file=sys.stderr)
@@ -193,6 +229,19 @@ class GLEIFReferenceDataFetcher:
 
         return processed
 
+    def _save_to_file(self, filepath: str, data: Dict[str, Any]) -> None:
+        """Save data to a JSON file.
+        
+        Args:
+            filepath: Path to save the file
+            data: Data to save
+        """
+        try:
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            print(f"Error saving to {filepath}: {e}", file=sys.stderr)
+
     def _get_timestamp(self) -> str:
         """Get current timestamp in ISO format."""
         from datetime import datetime, timezone
@@ -246,10 +295,16 @@ Examples:
         action="store_true",
         help="List available reference data types"
     )
+    parser.add_argument(
+        "--output",
+        "-o",
+        default="./reference_data",
+        help="Output directory for JSON files (default: ./reference_data)"
+    )
 
     args = parser.parse_args()
 
-    fetcher = GLEIFReferenceDataFetcher()
+    fetcher = GLEIFReferenceDataFetcher(output_dir=args.output)
 
     # Handle --list
     if args.list:
@@ -259,14 +314,14 @@ Examples:
     # Handle --all
     if args.all:
         result = fetcher.fetch_all_data()
-        print(json.dumps(result, indent=2))
+        print(f"\nAll reference data saved to: {args.output}", file=sys.stderr)
         sys.exit(0)
 
     # Handle specific data type
     if args.data_type:
         result = fetcher.fetch_data_by_type(args.data_type)
         if result:
-            print(json.dumps(result, indent=2))
+            print(f"\nData saved to: {args.output}/{args.data_type}.json", file=sys.stderr)
         sys.exit(0)
 
     # No arguments provided

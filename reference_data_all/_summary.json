@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-01-19T16:23:29.006485Z",
+  "api_version": "v1",
+  "source": "GLEIF API",
+  "output_directory": "./reference_data_all",
+  "files_saved": {
+    "countries": {
+      "filename": "countries.json",
+      "count": 250,
+      "filepath": "./reference_data_all/countries.json"
+    },
+    "regions": {
+      "filename": "regions.json",
+      "count": 5046,
+      "filepath": "./reference_data_all/regions.json"
+    },
+    "entity-legal-forms": {
+      "filename": "entity-legal-forms.json",
+      "count": 3430,
+      "filepath": "./reference_data_all/entity-legal-forms.json"
+    },
+    "jurisdictions": {
+      "filename": "jurisdictions.json",
+      "count": 5296,
+      "filepath": "./reference_data_all/jurisdictions.json"
+    },
+    "registration-authorities": {
+      "filename": "registration-authorities.json",
+      "count": 1071,
+      "filepath": "./reference_data_all/registration-authorities.json"
+    },
+    "registration-agents": {
+      "filename": "registration-agents.json",
+      "count": 64,
+      "filepath": "./reference_data_all/registration-agents.json"
+    },
+    "official-organizational-roles": {
+      "filename": "official-organizational-roles.json",
+      "count": 2127,
+      "filepath": "./reference_data_all/official-organizational-roles.json"
+    }
+  }
+}
