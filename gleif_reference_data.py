@@ -128,7 +128,7 @@ class GLEIFReferenceDataFetcher:
             print(f"✗ Error: {e}", file=sys.stderr)
             return None
 
-    def _fetch_endpoint(self, url: str, page_size: int = 250) -> List[Dict[str, Any]]:
+    def _fetch_endpoint(self, url: str, page_size: int = 200) -> List[Dict[str, Any]]:
         """
         Fetch all data from a given endpoint with pagination.
 
