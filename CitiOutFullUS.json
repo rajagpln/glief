@@ -1,0 +1,1134 @@
+{
+  "query": "Citibank",
+  "search_type": "fulltext",
+  "country_filter": "US",
+  "results_count": 46,
+  "results": [
+    {
+      "legal_entity_id": "549300URVFEWZ2S27095",
+      "legal_entity_name": {
+        "name": "FREMF 2018-KF55 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900QTMZ2ZHRYMFA85",
+      "legal_entity_name": {
+        "name": "EFMT 2024-INV2",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300WB8R5XVYIY6P09",
+      "legal_entity_name": {
+        "name": "FREMF 2016-KF23 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493002FH9THKVU5JQ96",
+      "legal_entity_name": {
+        "name": "FREMF 2016-KC01 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300BLKWB3JW74B816",
+      "legal_entity_name": {
+        "name": "FREMF 2016-KLH2 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300D6KLP4WDHO4Z69",
+      "legal_entity_name": {
+        "name": "FREMF 2016-KLH1 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300JKWRDYI2E5TU53",
+      "legal_entity_name": {
+        "name": "FREMF 2015-KS03 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493001WN8PW8ZQ6H041",
+      "legal_entity_name": {
+        "name": "FREMF 2015-K718 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300XDUXW4MOV3QH87",
+      "legal_entity_name": {
+        "name": "FREMF 2014-K39 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57117",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "USU31466AF99"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU31466AK84"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU31466AJ12"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAH11"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAU22"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAT58"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAG38"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAV05"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAS75"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU31466AD42"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAL23"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30292GAM06"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300ALD7KLPZGH2543",
+      "legal_entity_name": {
+        "name": "Citibuilder 401(k) Plan for Puerto Rico",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104-0432",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300AP3MSHI22J3043",
+      "legal_entity_name": {
+        "name": "FREMF 2016-KF26 Mortgage Trust",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "USU3150YAE42"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3150YAC85"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAE41"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3150YAA20"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3150YAB03"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3150YAD68"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAJ38"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAL83"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAK01"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAH71"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAB02"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAD67"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAM66"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3150YAF17"
+        },
+        {
+          "type": "ISIN",
+          "value": "US30289YAC84"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300B6BXLRTM2T1M21",
+      "legal_entity_name": {
+        "name": "Sequoia Mortgage Trust 2013-10",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "75104",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US81745GAQ73"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU8152LAC38"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU8152LAD11"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAD60"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU8152LAM10"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU8152LAL37"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAP90"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAL86"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAC87"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAR56"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU8152LAK53"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAG91"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU8152LAB54"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAA22"
+        },
+        {
+          "type": "ISIN",
+          "value": "US81745GAJ31"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "254900NFBGFOBK1G2B84",
+      "legal_entity_name": {
+        "name": "EFMT 2025-RTL1",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900CMJGXNT3R7H775",
+      "legal_entity_name": {
+        "name": "EFMT 2025-CES1",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900GTI06L3BTCLG55",
+      "legal_entity_name": {
+        "name": "EFMT 2024-NQM1",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900G4WO4UX6N3D818",
+      "legal_entity_name": {
+        "name": "EFMT 2025-CES2",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900ZO1GLQXE3JWX68",
+      "legal_entity_name": {
+        "name": "EFMT 2025-INV2",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900TJEVLCYF1H3X71",
+      "legal_entity_name": {
+        "name": "EFMT 2025-NQM1",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "213800PSIFQ2LQLDZ491",
+      "legal_entity_name": {
+        "name": "CITIBANK N.A., DANIEL C. DONOGHUE II & JOHN F. DONOGHUE II CO-TTEEE OF THE LEGION OF CHRIST CONSECRATED RMD TRUST",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "SIOUX FALLS",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300CI52G0YPLRKW05",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 720050087",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300ZCP16HSP0UWQ66",
+      "legal_entity_name": {
+        "name": "AEGCO Trust 6",
+        "language": "en"
+      },
+      "region": "US-OH",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Columbus",
+        "postal_code": "43215",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300Z97UQPIB27EY09",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 20170009",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300UFT6UP54PQA536",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 20170002",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300KGOHG7YMYL0W03",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 20130001",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300GEKPBXEI4X7D58",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 20150004",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300EDPNAZQ3L8MW08",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 20130004",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300AS98PJZ15BKB07",
+      "legal_entity_name": {
+        "name": "The Eagle Tax-Exempt Trust Series 20140040",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "254900TNII4NJJ48UY84",
+      "legal_entity_name": {
+        "name": "Gracie Point Collateral Trust",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW CASTLE",
+        "postal_code": "19720",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300BQMEOEJNQ8BA42",
+      "legal_entity_name": {
+        "name": "IHP Irving (TX) Owner, LLC",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Wilmington",
+        "postal_code": "19808",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493003GDRXIYOGVIQ02",
+      "legal_entity_name": {
+        "name": "Lexington Student Loan Trust I",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Greenville",
+        "postal_code": "19807",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US529627AA90"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU52839AA25"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300CRF3X8X6QGZ778",
+      "legal_entity_name": {
+        "name": "CitiFinancial Mortgage Securities Inc. - Series 2004-1",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Wilmington",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493004UNX3RE1I4DH23",
+      "legal_entity_name": {
+        "name": "COINSTAR FUNDING, LLC",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "USU19335AA31"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU19335AB14"
+        },
+        {
+          "type": "ISIN",
+          "value": "US19260MAB28"
+        },
+        {
+          "type": "ISIN",
+          "value": "US19260MAA45"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "5493004106T1X6YZ7986",
+      "legal_entity_name": {
+        "name": "DCP Rights, LLC",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "USU2401QAD26"
+        },
+        {
+          "type": "ISIN",
+          "value": "US23312AAF93"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU2401QAA86"
+        },
+        {
+          "type": "ISIN",
+          "value": "US23312AAC62"
+        },
+        {
+          "type": "ISIN",
+          "value": "US23312AAD46"
+        },
+        {
+          "type": "ISIN",
+          "value": "US23312AAE29"
+        },
+        {
+          "type": "ISIN",
+          "value": "US23312AAA07"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU2401QAB69"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU2401QAC43"
+        },
+        {
+          "type": "ISIN",
+          "value": "US23312AAB89"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300YI6IWMDN71W350",
+      "legal_entity_name": {
+        "name": "Citibank Brazilian Annex VI Trust",
+        "language": "en"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW YORK",
+        "postal_code": "10013",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300IKQ6Y8JKZHVZ64",
+      "legal_entity_name": {
+        "name": "BRAZIL BOND TRUST - CITIBANK DTVM SA",
+        "language": "pt"
+      },
+      "region": "US-NY",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "New York",
+        "postal_code": "10043",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300U3LMQTX8ECOW36",
+      "legal_entity_name": {
+        "name": "Citibank Credit Card Master Trust I",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57104-0432",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US17303CAC55"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17303CAB72"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "5493002ED52P1192NL04",
+      "legal_entity_name": {
+        "name": "Sun Life Financial (U.S.) Reinsurance Company and Citibank, as Trustee \"The Trust\"",
+        "language": "en"
+      },
+      "region": "US-VT",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Burlington",
+        "postal_code": "05401",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "CYSD4L2598RQ9BPPCB72",
+      "legal_entity_name": {
+        "name": "CITIBANK OVERSEAS INVESTMENT CORPORATION",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "NEW CASTLE",
+        "postal_code": "19720",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300TI1HXKFOM17H96",
+      "legal_entity_name": {
+        "name": "CITIBANK OMNI ISSUANCE TRUST SERIES 2019",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19805",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "2138008HBE32TV29JY47",
+      "legal_entity_name": {
+        "name": "CITIBANK N.A., DANIEL C. DONOGHUE II & RHODORA M DONOGHUE II CO-TTEEE OF THE LEGION OF CHRIST CONSECRATED JFDII TRUST",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "SIOUX FALLS",
+        "postal_code": "57104",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "5493003EQBZRUPLBR662",
+      "legal_entity_name": {
+        "name": "Citibank Mortgage Reinsurance, Inc.",
+        "language": "en"
+      },
+      "region": "US-VT",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Cambridge",
+        "postal_code": "05464",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300JXUJZCVNVYFX03",
+      "legal_entity_name": {
+        "name": "Citibank Strategic Technology Inc.",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Wilmington",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "549300L2T2STZJSYHY27",
+      "legal_entity_name": {
+        "name": "CITIBANK OMNI MASTER TRUST",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19805-1266",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "USU3090TAD01"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAE83"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAB45"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAA61"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAJ70"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAC28"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAN82"
+        },
+        {
+          "type": "ISIN",
+          "value": "USU3090TAJ70"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17308BAQ14"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "549300K8R9VXUE545U04",
+      "legal_entity_name": {
+        "name": "CITIBANK NMTC CORPORATION",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19801",
+        "country": "US"
+      },
+      "tickers_and_instruments": null
+    },
+    {
+      "legal_entity_id": "R8AG6FXVDQAMDKCSJJ64",
+      "legal_entity_name": {
+        "name": "CITIBANK CREDIT CARD ISSUANCE TRUST",
+        "language": "en"
+      },
+      "region": "US-DE",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "WILMINGTON",
+        "postal_code": "19809",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US17305EGE95"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EDT91"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EDU64"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGX76"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGS81"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGW93"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGZ25"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EET82"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGJ82"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGP43"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17305EGY59"
+        }
+      ]
+    },
+    {
+      "legal_entity_id": "E57ODZWZ7FF32TWEFA76",
+      "legal_entity_name": {
+        "name": "Citibank, National Association",
+        "language": "en"
+      },
+      "region": "US-SD",
+      "country": "US",
+      "country_of_jurisdiction": "US",
+      "address": {
+        "city": "Sioux Falls",
+        "postal_code": "57108",
+        "country": "US"
+      },
+      "tickers_and_instruments": [
+        {
+          "type": "ISIN",
+          "value": "US17312QX958"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QS594"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QV630"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q2Y47"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q3G22"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QZC67"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q2W80"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QM555"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QZD41"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QV226"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QN702"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QS917"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QT584"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312Q4C09"
+        },
+        {
+          "type": "ISIN",
+          "value": "US17312QYX14"
+        }
+      ]
+    }
+  ]
+}

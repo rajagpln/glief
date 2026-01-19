@@ -35,7 +35,7 @@ class GLEIFSearcher:
             "User-Agent": "GLEIF-Search-Tool/1.0"
         })
 
-    def search_entities(self, query: str, search_type: str = "name") -> List[Dict[str, Any]]:
+    def search_entities(self, query: str, search_type: str = "name", country_of_jurisdiction: Optional[str] = None) -> List[Dict[str, Any]]:
         """
         Search for legal entities matching the given query.
 
@@ -43,6 +43,7 @@ class GLEIFSearcher:
             query: Search string to find matching entities
             search_type: Type of search - "name" (default) for legal entity name only,
                         or "fulltext" to search across all fields
+            country_of_jurisdiction: Optional 2-letter country code to filter results
 
         Returns:
             List of matching entities with extracted information
@@ -64,6 +65,10 @@ class GLEIFSearcher:
                     "page[number]": page_num,
                     "page[size]": self.page_size
                 }
+                
+                # Add jurisdiction filter if provided
+                if country_of_jurisdiction:
+                    params["filter[entity.legalAddress.country]"] = country_of_jurisdiction.upper()
 
                 response = self.session.get(
                     f"{BASE_URL}/lei-records",
@@ -240,8 +245,11 @@ Examples:
   Search across all fields (name, address, etc.):
     python gleif_search.py --fulltext "Citibank"
     
-  Search for entities in a specific country:
-    python gleif_search.py "Bank of England"
+  Search for entities with "Citibank" in the United Kingdom:
+    python gleif_search.py "Citibank" --country GB
+    
+  Search across all fields and filter by country:
+    python gleif_search.py --fulltext "Bank" --country CN
         """
     )
 
@@ -255,6 +263,11 @@ Examples:
         help="Search across all fields (name, address, metadata). "
              "Default is to search only in legal entity names."
     )
+    parser.add_argument(
+        "--country",
+        "-c",
+        help="Filter results by country of jurisdiction (2-letter ISO country code, e.g., 'GB', 'US', 'CN'). Optional."
+    )
 
     args = parser.parse_args()
 
@@ -267,15 +280,18 @@ Examples:
 
     print(f"Searching for: {query}", file=sys.stderr)
     print(f"Search type: {'Full-text (name, address, metadata)' if args.fulltext else 'Legal entity name only'}", file=sys.stderr)
+    if args.country:
+        print(f"Country filter: {args.country.upper()}", file=sys.stderr)
     print("", file=sys.stderr)
 
     searcher = GLEIFSearcher()
-    results = searcher.search_entities(query, search_type=search_type)
+    results = searcher.search_entities(query, search_type=search_type, country_of_jurisdiction=args.country)
 
     # Format output as JSON
     output = {
         "query": query,
         "search_type": search_type,
+        "country_filter": args.country.upper() if args.country else None,
         "results_count": len(results),
         "results": results
     }
