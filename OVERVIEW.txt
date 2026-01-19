@@ -1,0 +1,199 @@
+================================================================================
+GLEIF TOOLKIT - COMPLETE OVERVIEW
+================================================================================
+
+WHAT YOU HAVE BUILT:
+A comprehensive Python toolkit for querying the GLEIF (Global Legal Entity 
+Identifier Foundation) API with two main scripts and complete documentation.
+
+================================================================================
+SCRIPTS
+================================================================================
+
+1. gleif_search.py (9.5K)
+   ├─ Search for legal entities
+   ├─ Default: Search by legal name only (73 results for "Citibank")
+   ├─ Option: --fulltext flag for comprehensive search (592 results for "Citibank")
+   └─ Usage: python gleif_search.py [--fulltext] "search query"
+
+2. gleif_reference_data.py (8.4K)
+   ├─ Fetch standardized codes from GLEIF API
+   ├─ Available data types:
+   │  ├─ countries (250 entries)
+   │  ├─ regions (5000+ entries)
+   │  ├─ entity-legal-forms (3400+ entries)
+   │  ├─ jurisdictions (5200+ entries)
+   │  ├─ registration-authorities (1000+ entries)
+   │  └─ official-organizational-roles (2100+ entries)
+   └─ Usage: python gleif_reference_data.py [--all|--list] [data_type]
+
+================================================================================
+DOCUMENTATION
+================================================================================
+
+1. README.md (9.1K)
+   └─ Complete guide to both scripts with examples and features
+
+2. CODE_REFERENCE.md (7.5K)
+   ├─ Explains all the codes in the output:
+   │  ├─ Country codes (ISO 3166-1): "GB", "US", "CN"
+   │  ├─ Region codes (ISO 3166-2): "GB-LND", "US-NY", "CA-ON"
+   │  ├─ Country of Jurisdiction
+   │  ├─ Entity Legal Form codes
+   │  ├─ BIC codes (Bank Identifier)
+   │  └─ ISIN codes (Securities Identifier)
+   └─ Includes examples from your Citibank search
+
+3. QUICK_START.md (7.2K)
+   ├─ Practical examples combining both scripts
+   ├─ Workflow guides
+   ├─ jq usage examples
+   ├─ Advanced queries
+   └─ Sample shell scripts
+
+================================================================================
+EXAMPLE OUTPUT FILES
+================================================================================
+
+CitiOutNameOnly.json (37K)
+└─ Search results from: python gleif_search.py "Citibank"
+   └─ 73 results with Citibank in the legal name
+
+countries_reference.json (20K)
+└─ Reference data from: python gleif_reference_data.py countries
+   └─ 250 country codes with official names
+
+================================================================================
+QUICK START
+================================================================================
+
+List available reference data types:
+  python gleif_reference_data.py --list
+
+Search for Citibank (name only):
+  python gleif_search.py "Citibank"
+
+Search for all Citibank-related entities:
+  python gleif_search.py --fulltext "Citibank"
+
+Get all country codes:
+  python gleif_reference_data.py countries
+
+Get all region codes:
+  python gleif_reference_data.py regions
+
+Get all reference data types:
+  python gleif_reference_data.py --all
+
+Export results to file:
+  python gleif_search.py "Citibank" > citibank_entities.json
+
+================================================================================
+HOW TO USE TOGETHER
+================================================================================
+
+WORKFLOW: Understand a search result
+
+1. Search for entities:
+   python gleif_search.py "Citibank" | jq '.results[0]'
+
+2. Get the country code from result (e.g., "GB"):
+   python gleif_reference_data.py countries | \
+     jq '.items[] | select(.code == "GB")'
+   → Shows: "United Kingdom"
+
+3. Get the region code from result (e.g., "GB-LND"):
+   python gleif_reference_data.py regions | \
+     jq '.items[] | select(.code == "GB-LND")'
+   → Shows: "London"
+
+================================================================================
+KEY CONCEPTS
+================================================================================
+
+COUNTRY CODES (ISO 3166-1)
+  Format: 2-letter codes (GB, US, CN)
+  Example: GB = United Kingdom
+
+REGION CODES (ISO 3166-2)
+  Format: COUNTRY-REGION (GB-LND, US-NY, CA-ON)
+  Example: GB-LND = London, United Kingdom
+
+COUNTRY OF JURISDICTION
+  Legal system that governs the entity (usually same as country)
+
+ENTITY LEGAL FORMS
+  Type of business entity (Corporation, LLC, Bank, etc.)
+  Varies by country/state
+
+BIC CODES
+  Bank Identifier Codes for financial transactions
+  Format: 8 or 11 characters
+
+ISIN CODES
+  International Securities Identification Numbers
+  Format: 12 characters (letters + numbers)
+
+================================================================================
+GETTING MORE RESULTS
+================================================================================
+
+Default (name-only search):
+  python gleif_search.py "Citibank"
+  → 73 results with "Citibank" in legal name
+
+Full-text search:
+  python gleif_search.py --fulltext "Citibank"
+  → 592 results including:
+     • Entities with "Citibank" in metadata
+     • Nominee entities
+     • Custodied funds
+     • Related trusts
+
+================================================================================
+API INFORMATION
+================================================================================
+
+Base URL: https://api.gleif.org/api/v1
+Documentation: https://api.gleif.org/docs
+Rate Limit: 60 requests/minute per user
+Cost: Free (no API key required)
+Terms: https://www.gleif.org/en/meta/lei-data-terms-of-use/
+
+================================================================================
+FILES CREATED
+================================================================================
+
+Python Scripts:
+  gleif_search.py              - Entity search tool
+  gleif_reference_data.py      - Reference data fetcher
+
+Documentation:
+  README.md                    - Main documentation
+  CODE_REFERENCE.md            - Code explanation guide
+  QUICK_START.md               - Practical examples
+  OVERVIEW.txt                 - This file
+
+Example Data:
+  CitiOutNameOnly.json         - Sample search results
+  countries_reference.json     - Sample reference data
+  CitiOut.txt                  - Full-text search results (251K)
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Read README.md for full feature overview
+
+2. Review CODE_REFERENCE.md to understand the codes in your results
+
+3. Follow QUICK_START.md for practical examples
+
+4. Run the scripts:
+   python gleif_search.py "your company name"
+   python gleif_reference_data.py --all > reference_data.json
+
+5. Use jq to filter and process JSON results:
+   python gleif_search.py "Citibank" | jq '.results[] | select(.country == "GB")'
+
+================================================================================
