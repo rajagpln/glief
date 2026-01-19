@@ -1,26 +1,45 @@
 #!/usr/bin/env python3
 """
-GLEIF Reference Data Extractor
+GLEIF Reference Data Fetcher
 
-This script fetches reference data from the GLEIF API and saves it as JSON files.
-Includes country codes, region codes, entity legal forms, etc.
+This module provides functionality to fetch and manage reference data from the GLEIF API.
+
+Key Classes:
+    GLEIFReferenceDataFetcher: Fetches standardized lookup tables
 
 Usage:
-    python gleif_reference_data.py [data_type]
+    from gleif_reference_data import GLEIFReferenceDataFetcher
+    fetcher = GLEIFReferenceDataFetcher()
+    fetcher.fetch_all_data()
+
+Command-line usage:
     python gleif_reference_data.py --all
-    python gleif_reference_data.py --output /path/to/directory
+    python gleif_reference_data.py countries
+    python gleif_reference_data.py --list
 """
 
 import json
 import sys
 import argparse
-import time
+import logging
 import requests
 import os
 from typing import Dict, List, Any, Optional
 
-# GLEIF API base URL
-BASE_URL = "https://api.gleif.org/api/v1"
+from gleif_config import APIConfig
+
+# Configure logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Add stderr handler if not already present
+if not logger.handlers:
+    handler = logging.StreamHandler(sys.stderr)
+    formatter = logging.Formatter(
+        "%(levelname)s: %(message)s"
+    )
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 
 class GLEIFReferenceDataFetcher:
@@ -29,8 +48,8 @@ class GLEIFReferenceDataFetcher:
     def __init__(
         self,
         output_dir: str = "./reference_data",
-        max_retries: int = 3,
-        backoff_base_seconds: float = 0.5,
+        max_retries: int = APIConfig.DEFAULT_MAX_RETRIES,
+        backoff_base_seconds: float = APIConfig.DEFAULT_BACKOFF_BASE,
     ):
         """Initialize the reference data fetcher.
         
@@ -43,7 +62,7 @@ class GLEIFReferenceDataFetcher:
         # Create output directory if it doesn't exist
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
-            print(f"Created directory: {self.output_dir}", file=sys.stderr)
+            logger.info(f"Created directory: {self.output_dir}")
         self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "GLEIF-Reference-Data-Tool/1.0"
@@ -52,31 +71,31 @@ class GLEIFReferenceDataFetcher:
         self.backoff_base_seconds = max(0.0, backoff_base_seconds)
         self.endpoints = {
             "countries": {
-                "url": f"{BASE_URL}/countries",
+                "url": f"{APIConfig.BASE_URL}/countries",
                 "description": "ISO country codes and names"
             },
             "regions": {
-                "url": f"{BASE_URL}/regions",
+                "url": f"{APIConfig.BASE_URL}/regions",
                 "description": "ISO 3166-2 region/subdivision codes"
             },
             "entity-legal-forms": {
-                "url": f"{BASE_URL}/entity-legal-forms",
+                "url": f"{APIConfig.BASE_URL}/entity-legal-forms",
                 "description": "Legal entity form types (e.g., Corporation, LLC, Ltd)"
             },
             "jurisdictions": {
-                "url": f"{BASE_URL}/jurisdictions",
+                "url": f"{APIConfig.BASE_URL}/jurisdictions",
                 "description": "Jurisdictions for entity registration"
             },
             "registration-authorities": {
-                "url": f"{BASE_URL}/registration-authorities",
+                "url": f"{APIConfig.BASE_URL}/registration-authorities",
                 "description": "Business register authorities"
             },
             "registration-agents": {
-                "url": f"{BASE_URL}/registration-agents",
+                "url": f"{APIConfig.BASE_URL}/registration-agents",
                 "description": "LEI registration agents"
             },
             "official-organizational-roles": {
-                "url": f"{BASE_URL}/official-organizational-roles",
+                "url": f"{APIConfig.BASE_URL}/official-organizational-roles",
                 "description": "Organizational role types"
             }
         }
@@ -97,7 +116,7 @@ class GLEIFReferenceDataFetcher:
         }
 
         for endpoint_name, endpoint_info in self.endpoints.items():
-            print(f"Fetching {endpoint_name}...", file=sys.stderr)
+            logger.info(f"Fetching {endpoint_name}...")
             try:
                 data = self._fetch_endpoint(endpoint_info["url"])
                 if data:
@@ -120,9 +139,9 @@ class GLEIFReferenceDataFetcher:
                         "count": len(data),
                         "filepath": filepath
                     }
-                    print(f"  ✓ Retrieved {len(data)} items → {filename}", file=sys.stderr)
+                    logger.info(f"  ✓ Retrieved {len(data)} items → {filename}")
             except Exception as e:
-                print(f"  ✗ Error: {e}", file=sys.stderr)
+                logger.error(f"  ✗ Error fetching {endpoint_name}: {e}", exc_info=True)
                 summary["files_saved"][endpoint_name] = {
                     "error": str(e)
                 }
@@ -130,7 +149,7 @@ class GLEIFReferenceDataFetcher:
         # Save summary file
         summary_path = os.path.join(self.output_dir, "_summary.json")
         self._save_to_file(summary_path, summary)
-        print(f"\n✓ Summary saved to _summary.json", file=sys.stderr)
+        logger.info(f"✓ Summary saved to _summary.json")
         
         return summary
 
@@ -145,12 +164,12 @@ class GLEIFReferenceDataFetcher:
             Dictionary with the reference data or None if type not found
         """
         if data_type not in self.endpoints:
-            print(f"Error: Unknown data type '{data_type}'", file=sys.stderr)
-            print(f"Available types: {', '.join(self.endpoints.keys())}", file=sys.stderr)
+            logger.error(f"Unknown data type '{data_type}'")
+            logger.info(f"Available types: {', '.join(self.endpoints.keys())}")
             return None
 
         endpoint_info = self.endpoints[data_type]
-        print(f"Fetching {data_type}...", file=sys.stderr)
+        logger.info(f"Fetching {data_type}...")
 
         try:
             data = self._fetch_endpoint(endpoint_info["url"])
@@ -168,13 +187,13 @@ class GLEIFReferenceDataFetcher:
                 filepath = os.path.join(self.output_dir, filename)
                 self._save_to_file(filepath, result)
                 
-                print(f"✓ Retrieved {len(data)} items → {filename}", file=sys.stderr)
+                logger.info(f"✓ Retrieved {len(data)} items → {filename}")
                 return result
         except Exception as e:
-            print(f"✗ Error: {e}", file=sys.stderr)
+            logger.error(f"✗ Error: {e}", exc_info=True)
             return None
 
-    def _fetch_endpoint(self, url: str, page_size: int = 200) -> List[Dict[str, Any]]:
+    def _fetch_endpoint(self, url: str, page_size: int = APIConfig.REFERENCE_PAGE_SIZE) -> List[Dict[str, Any]]:
         """
         Fetch all data from a given endpoint with pagination.
 
@@ -210,7 +229,7 @@ class GLEIFReferenceDataFetcher:
             # Check if there are more pages
             meta = data.get("meta", {})
             pagination = meta.get("pagination", {})
-            if not pagination.get("lastPage") or pagination.get("lastPage") == page_num:
+            if self._should_stop_pagination(pagination, page_num):
                 break
 
             page_num += 1
@@ -218,13 +237,26 @@ class GLEIFReferenceDataFetcher:
         return all_items
 
     def _get_with_backoff(self, url: str, params: Optional[Dict[str, Any]] = None) -> requests.Response:
-        """GET with simple retry/backoff for transient errors."""
+        """
+        GET with simple retry/backoff for transient errors.
+        
+        Args:
+            url: URL to request
+            params: Query parameters
+            
+        Returns:
+            Response object
+        """
         for attempt in range(self.max_retries + 1):
-            response = self.session.get(url, params=params, timeout=10)
-            if response.status_code not in {429, 500, 502, 503, 504}:
+            response = self.session.get(url, params=params, timeout=APIConfig.TIMEOUT_SECONDS)
+            if response.status_code not in APIConfig.RATE_LIMIT_CODES:
                 return response
             if attempt < self.max_retries:
                 delay = self.backoff_base_seconds * (2 ** attempt)
+                logger.warning(
+                    f"Rate limited (status {response.status_code}). "
+                    f"Retrying in {delay:.1f}s (attempt {attempt + 1}/{self.max_retries})"
+                )
                 time.sleep(delay)
         return response
 
@@ -261,7 +293,7 @@ class GLEIFReferenceDataFetcher:
             with open(filepath, 'w') as f:
                 json.dump(data, f, indent=2)
         except Exception as e:
-            print(f"Error saving to {filepath}: {e}", file=sys.stderr)
+            logger.error(f"Error saving to {filepath}: {e}", exc_info=True)
 
     def _get_timestamp(self) -> str:
         """Get current timestamp in ISO format."""
@@ -270,11 +302,26 @@ class GLEIFReferenceDataFetcher:
 
     def list_available_types(self) -> None:
         """Print available reference data types."""
-        print("Available Reference Data Types:", file=sys.stderr)
-        print("", file=sys.stderr)
+        logger.info("Available Reference Data Types:")
+        logger.info("")
         for name, info in self.endpoints.items():
-            print(f"  {name:35} - {info['description']}", file=sys.stderr)
-        print("", file=sys.stderr)
+            logger.info(f"  {name:35} - {info['description']}")
+        logger.info("")
+
+    @staticmethod
+    def _should_stop_pagination(pagination: Dict[str, Any], current_page: int) -> bool:
+        """
+        Determine if pagination should stop.
+        
+        Args:
+            pagination: Pagination metadata from API response
+            current_page: Current page number
+            
+        Returns:
+            True if pagination should stop, False otherwise
+        """
+        last_page = pagination.get("lastPage")
+        return not last_page or last_page == current_page
 
 
 def main():
@@ -325,13 +372,54 @@ Examples:
     parser.add_argument(
         "--max-retries",
         type=int,
-        default=3,
-        help="Max retries for transient failures (default: 3)"
+        default=APIConfig.DEFAULT_MAX_RETRIES,
+        help=f"Max retries for transient failures (default: {APIConfig.DEFAULT_MAX_RETRIES})"
     )
     parser.add_argument(
         "--backoff-base-seconds",
         type=float,
-        default=0.5,
+        default=APIConfig.DEFAULT_BACKOFF_BASE,
+        help=f"Base seconds for exponential backoff (default: {APIConfig.DEFAULT_BACKOFF_BASE})"
+    )
+    parser.add_argument(
+        "--log-level",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        default="INFO",
+        help="Logging level (default: INFO)"
+    )
+
+    args = parser.parse_args()
+
+    # Configure logging level
+    logger.setLevel(getattr(logging, args.log_level))
+
+    fetcher = GLEIFReferenceDataFetcher(
+        output_dir=args.output,
+        max_retries=args.max_retries,
+        backoff_base_seconds=args.backoff_base_seconds,
+    )
+
+    # Handle --list
+    if args.list:
+        fetcher.list_available_types()
+        sys.exit(0)
+
+    # Handle --all
+    if args.all:
+        result = fetcher.fetch_all_data()
+        logger.info(f"All reference data saved to: {args.output}")
+        sys.exit(0)
+
+    # Handle specific data type
+    if args.data_type:
+        result = fetcher.fetch_data_by_type(args.data_type)
+        if result:
+            logger.info(f"Data saved to: {args.output}/{args.data_type}.json")
+        sys.exit(0)
+
+    # No arguments provided
+    parser.print_help()
+    sys.exit(1)
         help="Base seconds for exponential backoff (default: 0.5)"
     )
 

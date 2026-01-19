@@ -13,6 +13,11 @@ import unittest
 from unittest.mock import Mock, MagicMock, patch
 import json
 from gleif_search import GLEIFSearcher
+from gleif_exceptions import (
+    GLEIFValidationError,
+    GLEIFNetworkError,
+    GLEIFAPIError
+)
 
 
 class TestGLEIFSearcherExtraction(unittest.TestCase):
@@ -201,6 +206,74 @@ class TestGLEIFSearcherExtractRecord(unittest.TestCase):
         result = self.searcher._extract_lei_record_info(record, include_instruments=False)
         self.assertIsNone(result)
 
+    def test_extract_lei_record_with_non_dict_type(self):
+        """Test extraction handles non-dict record type."""
+        record = "not a dict"
+        result = self.searcher._extract_lei_record_info(record, include_instruments=False)
+        self.assertIsNone(result)
+
+    def test_extract_lei_record_with_list_type(self):
+        """Test extraction handles list record type."""
+        record = [1, 2, 3]
+        result = self.searcher._extract_lei_record_info(record, include_instruments=False)
+        self.assertIsNone(result)
+
+
+class TestGLEIFSearcherValidation(unittest.TestCase):
+    """Test parameter validation."""
+
+    def setUp(self):
+        """Set up test fixtures."""
+        self.searcher = GLEIFSearcher()
+
+    def test_validate_valid_parameters(self):
+        """Test validation passes with valid parameters."""
+        # Should not raise any exception
+        try:
+            self.searcher._validate_search_params("Citibank", "name", None)
+            self.searcher._validate_search_params("Bank", "fulltext", "US")
+        except GLEIFValidationError:
+            self.fail("_validate_search_params raised GLEIFValidationError unexpectedly")
+
+    def test_validate_invalid_search_type(self):
+        """Test validation rejects invalid search type."""
+        with self.assertRaises(GLEIFValidationError) as context:
+            self.searcher._validate_search_params("Query", "invalid_type", None)
+        self.assertIn("search_type", str(context.exception))
+
+    def test_validate_invalid_country_code_length(self):
+        """Test validation rejects country code with wrong length."""
+        with self.assertRaises(GLEIFValidationError) as context:
+            self.searcher._validate_search_params("Query", "name", "INVALID")
+        self.assertIn("country code", str(context.exception).lower())
+
+    def test_validate_invalid_country_code_single_letter(self):
+        """Test validation rejects single-letter country code."""
+        with self.assertRaises(GLEIFValidationError) as context:
+            self.searcher._validate_search_params("Query", "name", "U")
+        self.assertIn("country code", str(context.exception).lower())
+
+    def test_validate_empty_query(self):
+        """Test validation rejects empty query."""
+        with self.assertRaises(GLEIFValidationError) as context:
+            self.searcher._validate_search_params("", "name", None)
+        self.assertIn("query", str(context.exception).lower())
+
+    def test_validate_non_string_query(self):
+        """Test validation rejects non-string query."""
+        with self.assertRaises(GLEIFValidationError) as context:
+            self.searcher._validate_search_params(123, "name", None)
+        self.assertIn("query", str(context.exception).lower())
+
+    def test_validate_valid_country_codes(self):
+        """Test validation accepts valid 2-letter country codes."""
+        valid_codes = ["US", "GB", "DE", "FR", "JP", "CA", "AU"]
+        for code in valid_codes:
+            try:
+                self.searcher._validate_search_params("Query", "name", code)
+            except GLEIFValidationError:
+                self.fail(f"_validate_search_params rejected valid country code '{code}'")
+
 
 class TestGLEIFSearcherSearchParameters(unittest.TestCase):
     """Test search parameter building and API requests."""
@@ -329,6 +402,64 @@ class TestGLEIFSearcherSearchParameters(unittest.TestCase):
 
         self.assertEqual(len(results), 0)
 
+    @patch('gleif_search.GLEIFSearcher._validate_search_params')
+    @patch('gleif_search.GLEIFSearcher._get_with_backoff')
+    def test_search_validates_parameters(self, mock_get, mock_validate):
+        """Test search calls parameter validation."""
+        mock_response = Mock()
+        mock_response.json.return_value = {
+            "data": [],
+            "meta": {"pagination": {"lastPage": True}}
+        }
+        mock_get.return_value = mock_response
+
+        self.searcher.search_entities("Citibank", search_type="name", country_of_jurisdiction="US")
+
+        # Verify validation was called
+        mock_validate.assert_called_once()
+        call_args = mock_validate.call_args[0]
+        self.assertEqual(call_args[0], "Citibank")
+        self.assertEqual(call_args[1], "name")
+        self.assertEqual(call_args[2], "US")
+
+
+class TestGLEIFSearcherPagination(unittest.TestCase):
+    """Test pagination logic."""
+
+    def setUp(self):
+        """Set up test fixtures."""
+        self.searcher = GLEIFSearcher()
+
+    def test_should_stop_pagination_not_at_last_page(self):
+        """Test pagination continues when not at last page."""
+        pagination = {"lastPage": 3, "page": 1}
+        should_stop = GLEIFSearcher._should_stop_pagination(pagination, 1)
+        self.assertFalse(should_stop)
+
+    def test_should_stop_pagination_at_last_page(self):
+        """Test pagination stops when current page equals lastPage."""
+        pagination = {"lastPage": 3, "page": 3}
+        should_stop = GLEIFSearcher._should_stop_pagination(pagination, 3)
+        self.assertTrue(should_stop)
+
+    def test_should_stop_pagination_before_last_page(self):
+        """Test pagination continues before last page."""
+        pagination = {"lastPage": 5, "page": 2}
+        should_stop = GLEIFSearcher._should_stop_pagination(pagination, 2)
+        self.assertFalse(should_stop)
+
+    def test_should_stop_pagination_missing_last_page(self):
+        """Test pagination stops when lastPage is missing (None)."""
+        pagination = {"page": 1}
+        should_stop = GLEIFSearcher._should_stop_pagination(pagination, 1)
+        self.assertTrue(should_stop)
+
+    def test_should_stop_pagination_empty_dict(self):
+        """Test pagination stops with empty pagination dict."""
+        pagination = {}
+        should_stop = GLEIFSearcher._should_stop_pagination(pagination, 1)
+        self.assertTrue(should_stop)
+
 
 class TestGLEIFSearcherErrorHandling(unittest.TestCase):
     """Test error handling."""
@@ -368,6 +499,12 @@ class TestGLEIFSearcherErrorHandling(unittest.TestCase):
         results = self.searcher.search_entities("Test")
 
         self.assertEqual(len(results), 0)
+
+    def test_validation_error_caught_in_search(self):
+        """Test that validation errors are caught and handled."""
+        # Trying to search with invalid parameters should raise GLEIFValidationError
+        with self.assertRaises(GLEIFValidationError):
+            self.searcher.search_entities("", search_type="name")
 
 
 class TestGLEIFSearcherInitialization(unittest.TestCase):

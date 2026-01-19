@@ -2,22 +2,48 @@
 """
 GLEIF Legal Entity Search Tool
 
-This script takes a search string as input and uses the GLEIF API to find
-all matching legal entities, returning relevant information in JSON format.
+This module provides functionality to search the GLEIF API for legal entities.
+
+Key Classes:
+    GLEIFSearcher: Main search class for entity lookups
 
 Usage:
+    from gleif_search import GLEIFSearcher
+    searcher = GLEIFSearcher()
+    results = searcher.search_entities("Citibank")
+
+Command-line usage:
     python gleif_search.py "search string"
+    python gleif_search.py "Citibank" --fulltext --country GB
 """
 
 import json
 import sys
 import argparse
 import time
+import logging
 import requests
 from typing import List, Dict, Any, Optional
 
-# GLEIF API base URL
-BASE_URL = "https://api.gleif.org/api/v1"
+from gleif_config import APIConfig, SearchConfig
+from gleif_exceptions import (
+    GLEIFValidationError,
+    GLEIFNetworkError,
+    GLEIFDataError,
+)
+
+# Configure logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Add stderr handler if not already present
+if not logger.handlers:
+    handler = logging.StreamHandler(sys.stderr)
+    formatter = logging.Formatter(
+        "%(levelname)s: %(message)s"
+    )
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 
 class GLEIFSearcher:
@@ -25,10 +51,10 @@ class GLEIFSearcher:
 
     def __init__(
         self,
-        page_size: int = 100,
-        instrument_request_budget: int = 20,
-        max_retries: int = 3,
-        backoff_base_seconds: float = 0.5,
+        page_size: int = APIConfig.SEARCH_PAGE_SIZE,
+        instrument_request_budget: int = APIConfig.DEFAULT_INSTRUMENT_BUDGET,
+        max_retries: int = APIConfig.DEFAULT_MAX_RETRIES,
+        backoff_base_seconds: float = APIConfig.DEFAULT_BACKOFF_BASE,
     ):
         """
         Initialize the GLEIF searcher.
@@ -39,7 +65,7 @@ class GLEIFSearcher:
             max_retries: Max retries for transient instrument lookup failures
             backoff_base_seconds: Base seconds for exponential backoff
         """
-        self.page_size = min(page_size, 100)
+        self.page_size = min(page_size, APIConfig.SEARCH_PAGE_SIZE)
         self.instrument_request_budget = max(0, instrument_request_budget)
         self.max_retries = max(0, max_retries)
         self.backoff_base_seconds = max(0.0, backoff_base_seconds)
@@ -67,7 +93,13 @@ class GLEIFSearcher:
 
         Returns:
             List of matching entities with extracted information
+            
+        Raises:
+            GLEIFValidationError: If input parameters are invalid
         """
+        # Validate input parameters
+        self._validate_search_params(query, search_type, country_of_jurisdiction)
+        
         entities = []
         page_num = 1
 
@@ -76,6 +108,10 @@ class GLEIFSearcher:
             filter_field = "fulltext"
         else:
             filter_field = "entity.legalName"
+
+        logger.info(f"Starting search for '{query}' (type: {search_type})")
+        if country_of_jurisdiction:
+            logger.info(f"Filtering by country: {country_of_jurisdiction.upper()}")
 
         while True:
             try:
@@ -91,7 +127,7 @@ class GLEIFSearcher:
                     params["filter[entity.legalAddress.country]"] = country_of_jurisdiction.upper()
 
                 response = self._get_with_backoff(
-                    f"{BASE_URL}/lei-records",
+                    f"{APIConfig.BASE_URL}/lei-records",
                     params=params
                 )
                 response.raise_for_status()
@@ -110,19 +146,57 @@ class GLEIFSearcher:
                 # Check if there are more results
                 meta = data.get("meta", {})
                 pagination = meta.get("pagination", {})
-                if not pagination.get("lastPage") or pagination.get("lastPage") == page_num:
+                if self._should_stop_pagination(pagination, page_num):
                     break
 
                 page_num += 1
 
             except requests.exceptions.RequestException as e:
-                print(f"Error during API request: {e}", file=sys.stderr)
+                logger.error(
+                    f"API request failed on page {page_num} for query '{query}': {e}",
+                    exc_info=True
+                )
+                logger.info(f"Retrieved {len(entities)} results before failure")
                 break
             except (KeyError, ValueError) as e:
-                print(f"Error parsing API response: {e}", file=sys.stderr)
+                logger.error(f"Error parsing API response: {e}", exc_info=True)
                 break
 
+        logger.info(f"Search complete: {len(entities)} entities found")
         return entities
+
+    def _validate_search_params(
+        self,
+        query: str,
+        search_type: str,
+        country: Optional[str],
+    ) -> None:
+        """
+        Validate search parameters.
+        
+        Args:
+            query: Search query string
+            search_type: Type of search ("name" or "fulltext")
+            country: Optional country code
+            
+        Raises:
+            GLEIFValidationError: If any parameter is invalid
+        """
+        if not query or not isinstance(query, str):
+            raise GLEIFValidationError("Query must be a non-empty string")
+        
+        if search_type not in SearchConfig.VALID_SEARCH_TYPES:
+            raise GLEIFValidationError(
+                f"Invalid search_type '{search_type}'. "
+                f"Must be one of: {SearchConfig.VALID_SEARCH_TYPES}"
+            )
+        
+        if country:
+            if not isinstance(country, str) or len(country) != SearchConfig.COUNTRY_CODE_LENGTH:
+                raise GLEIFValidationError(
+                    f"Invalid country code '{country}'. "
+                    f"Must be a 2-letter ISO country code."
+                )
 
     def _extract_lei_record_info(
         self,
@@ -134,10 +208,18 @@ class GLEIFSearcher:
 
         Args:
             record: Raw LEI record from response
+            include_instruments: Whether to include BIC/ISIN enrichment
 
         Returns:
             Structured entity information or None if extraction fails
         """
+        # Type validation
+        if not isinstance(record, dict):
+            logger.warning(
+                f"Expected dict record, got {type(record).__name__}. Skipping."
+            )
+            return None
+        
         try:
             attributes = record.get("attributes", {})
             entity = attributes.get("entity", {})
@@ -162,7 +244,7 @@ class GLEIFSearcher:
             return entity_info
 
         except Exception as e:
-            print(f"Error extracting LEI record info: {e}", file=sys.stderr)
+            logger.error(f"Error extracting LEI record info: {e}", exc_info=True)
             return None
 
 
@@ -176,7 +258,7 @@ class GLEIFSearcher:
         Returns:
             Structured entity information or None if fetch fails
         """
-        pass  # No longer needed, removed to avoid confusion
+        pass  # Deprecated - use search_entities() instead
 
 
     def _extract_region(self, entity: Dict[str, Any]) -> Optional[str]:
@@ -226,13 +308,29 @@ class GLEIFSearcher:
         return address if address else None
 
     def _get_with_backoff(self, url: str, params: Optional[Dict[str, Any]] = None) -> requests.Response:
-        """GET with simple retry/backoff for transient errors."""
+        """
+        GET with simple retry/backoff for transient errors.
+        
+        Args:
+            url: URL to request
+            params: Query parameters
+            
+        Returns:
+            Response object
+            
+        Raises:
+            GLEIFNetworkError: If all retry attempts fail
+        """
         for attempt in range(self.max_retries + 1):
-            response = self.session.get(url, params=params, timeout=10)
-            if response.status_code not in {429, 500, 502, 503, 504}:
+            response = self.session.get(url, params=params, timeout=APIConfig.TIMEOUT_SECONDS)
+            if response.status_code not in APIConfig.RATE_LIMIT_CODES:
                 return response
             if attempt < self.max_retries:
                 delay = self.backoff_base_seconds * (2 ** attempt)
+                logger.warning(
+                    f"Rate limited (status {response.status_code}). "
+                    f"Retrying in {delay:.1f}s (attempt {attempt + 1}/{self.max_retries})"
+                )
                 time.sleep(delay)
         return response
 
@@ -249,11 +347,11 @@ class GLEIFSearcher:
                     page_num = 1
                     while True:
                         if self.instrument_request_budget <= 0:
-                            print("Instrument lookup budget exhausted; stopping ISIN enrichment.", file=sys.stderr)
+                            logger.warning("Instrument lookup budget exhausted; stopping ISIN enrichment.")
                             break
                         params = {
                             "page[number]": page_num,
-                            "page[size]": 200,
+                            "page[size]": APIConfig.INSTRUMENT_PAGE_SIZE,
                         }
                         response = self._get_with_backoff(isins_link, params=params)
                         self.instrument_request_budget -= 1
@@ -269,12 +367,12 @@ class GLEIFSearcher:
 
                         meta = isins_data.get("meta", {})
                         pagination = meta.get("pagination", {})
-                        if not pagination.get("lastPage") or pagination.get("lastPage") == page_num:
+                        if self._should_stop_pagination(pagination, page_num):
                             break
 
                         page_num += 1
                 except Exception as e:
-                    print(f"Error fetching ISINs: {e}", file=sys.stderr)
+                    logger.error(f"Error fetching ISINs: {e}", exc_info=True)
 
         # Try to get BIC codes
         attributes = record.get("attributes", {})
@@ -286,6 +384,21 @@ class GLEIFSearcher:
             })
 
         return instruments if instruments else None
+
+    @staticmethod
+    def _should_stop_pagination(pagination: Dict[str, Any], current_page: int) -> bool:
+        """
+        Determine if pagination should stop.
+        
+        Args:
+            pagination: Pagination metadata from API response
+            current_page: Current page number
+            
+        Returns:
+            True if pagination should stop, False otherwise
+        """
+        last_page = pagination.get("lastPage")
+        return not last_page or last_page == current_page
 
 
 def main():
@@ -322,7 +435,7 @@ Examples:
     parser.add_argument(
         "--country",
         "-c",
-        help="Filter results by country of jurisdiction (2-letter ISO country code, e.g., 'GB', 'US', 'CN'). Optional."
+        help="Filter results by country (2-letter ISO country code, e.g., 'GB', 'US', 'CN'). Optional."
     )
     parser.add_argument(
         "--include-instruments",
@@ -332,43 +445,59 @@ Examples:
     parser.add_argument(
         "--instrument-request-budget",
         type=int,
-        default=20,
-        help="Max number of instrument lookup requests (default: 20)."
+        default=APIConfig.DEFAULT_INSTRUMENT_BUDGET,
+        help=f"Max number of instrument lookup requests (default: {APIConfig.DEFAULT_INSTRUMENT_BUDGET})."
+    )
+    parser.add_argument(
+        "--log-level",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        default="INFO",
+        help="Logging level (default: INFO)"
     )
 
     args = parser.parse_args()
 
-    if not args.query:
-        parser.print_help()
+    # Configure logging level
+    logger.setLevel(getattr(logging, args.log_level))
+
+    try:
+        if not args.query:
+            parser.print_help()
+            sys.exit(1)
+
+        query = args.query
+        search_type = "fulltext" if args.fulltext else "name"
+
+        logger.info(f"Searching for: {query}")
+        logger.info(f"Search type: {'Full-text (name, address, metadata)' if args.fulltext else 'Legal entity name only'}")
+        if args.country:
+            logger.info(f"Country filter: {args.country.upper()}")
+
+        searcher = GLEIFSearcher(instrument_request_budget=args.instrument_request_budget)
+        results = searcher.search_entities(
+            query,
+            search_type=search_type,
+            country_of_jurisdiction=args.country,
+            include_instruments=args.include_instruments,
+        )
+
+        # Format output as JSON
+        output = {
+            "query": query,
+            "search_type": search_type,
+            "country_filter": args.country.upper() if args.country else None,
+            "results_count": len(results),
+            "results": results
+        }
+
+        print(json.dumps(output, indent=2))
+
+    except GLEIFValidationError as e:
+        logger.error(f"Validation error: {e}")
         sys.exit(1)
-
-    query = args.query
-    search_type = "fulltext" if args.fulltext else "name"
-
-    print(f"Searching for: {query}", file=sys.stderr)
-    print(f"Search type: {'Full-text (name, address, metadata)' if args.fulltext else 'Legal entity name only'}", file=sys.stderr)
-    if args.country:
-        print(f"Country filter: {args.country.upper()}", file=sys.stderr)
-    print("", file=sys.stderr)
-
-    searcher = GLEIFSearcher(instrument_request_budget=args.instrument_request_budget)
-    results = searcher.search_entities(
-        query,
-        search_type=search_type,
-        country_of_jurisdiction=args.country,
-        include_instruments=args.include_instruments,
-    )
-
-    # Format output as JSON
-    output = {
-        "query": query,
-        "search_type": search_type,
-        "country_filter": args.country.upper() if args.country else None,
-        "results_count": len(results),
-        "results": results
-    }
-
-    print(json.dumps(output, indent=2))
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}", exc_info=True)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
